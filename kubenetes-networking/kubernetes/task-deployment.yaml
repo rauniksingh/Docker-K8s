@@ -1,20 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: users-deployment
+  name: task-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: users
+      app: task
   template:
     metadata:
       labels:
-        app: users
+        app: task
     spec:
       containers:
-        - name: users
-          image: rauniksingh/kubernetes-network-users-api:latest
+        - name: task
+          image: rauniksingh/kubernetes-network-task-api:latest
           env: 
             - name: AUTH_ADDRESS
               value: "auth-service.default"
+            - name: TASKS_FOLDER
+              value: tasks         
